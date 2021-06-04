@@ -48,8 +48,8 @@ var io = {
 		output: './configs/',
 	},
 	css: {
-		input: './css/scss/*.scss',
-		output: './css/',
+		input: './scss/*.scss',
+		output: './admin/css/',
 	},
 	js: {
 		input: './js/*.js',
