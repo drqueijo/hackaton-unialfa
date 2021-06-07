@@ -3,7 +3,7 @@
 	//criar uma conexao com um banco - PDO
 	//constante
 	define('SERVER', 'localhost');
-	define('BANCO', 'sistemas');
+	define('BANCO', 'unialfa-hackaton');
 	define('USUARIO', 'root');
 	define('SENHA', '');
 

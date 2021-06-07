@@ -1,5 +1,5 @@
 <?php
-    if ( ! isset ( $_SESSION['admin']['id'] ) ) exit;
+    if ( ! isset ( $_SESSION['submarino']['id'] ) ) exit;
 
     $tipo = NULL;
 
