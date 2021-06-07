@@ -1,5 +1,5 @@
 <?php
-    if ( ! isset ( $_SESSION['submarino']['id'] ) ) exit;
+    if ( ! isset ( $_SESSION['admin']['id'] ) ) exit;
 
 
     if ( $_POST ) {
@@ -19,7 +19,7 @@
     	}
 
     	//pegar o usuário logado
-		$usuario_id = $_SESSION['submarino']['id'];
+		$usuario_id = $_SESSION['admin']['id'];
 
     	//inserir ou atualizar
     	if ( empty ( $id ) ) {

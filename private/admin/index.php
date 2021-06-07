@@ -17,7 +17,7 @@
     <meta name="description" content="Sistema de e-commerce SubSubMarino">
     <meta name="author" content="">
 
-    <title>ADMIN - SubSubmarino</title>
+    <title>ADMIN</title>
 
     <base href="<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER["SCRIPT_NAME"]; ?>">
 
@@ -64,21 +64,26 @@
     <link rel="stylesheet" type="text/css" href="vendor/summernote/summernote-bs4.min.css">
     <link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
 
+     <!-- Addicional custom styles -->
+    <link rel="stylesheet" type="text/css" href="css/theme.min.css">
+
 </head>
 
 <body id="page-top">
     <?php
     //verificar se o usuário está logado
-    if ( !isset ( $_SESSION["submarino"]["id"] ) ) {
+    if ( !isset ( $_SESSION["admin"]["id"] ) ) {
         //mostrar a tela de login
         include "paginas/login.php";
     } else {
         
         //incluir o arquivo de conexao com o banco
         include "libs/conectar.php";
+        include "libs/docs.php";
 
-        //incluir o header
-        include "header.php";
+        //incluir o main-menu
+        include "main-menu.php";
+
 
         // conteudo da minha página
 
@@ -101,61 +106,8 @@
 
 
         //verificar o arquivo (tabela)
-        if ( !empty ( $arquivo ) ) {
-
-            $ip = $_SERVER['REMOTE_ADDR'];
-            $acao = $pasta; //listar, excluir, cadastros
-            $tabela = $arquivo; //categorias, produtos
-            $usuario = $_SESSION["submarino"]["id"]; //id do usuario
-            $tabela_id = $id ?? NULL;
-
-
-            //se o id não estiver em branco e a acção for diferente de excluir, a ação será editar
-            if ( ( !empty ( $tabela_id ) ) and ( $acao != "excluir" ) )
-                $acao = "editar";
-
-            $sql = "insert into log values (NULL,
-            :usuario, NOW(), :ip, :tabela, :acao, :tabela_id )";
-            $consulta = $pdo->prepare($sql);
-            $consulta->bindParam(':usuario', $usuario);
-            $consulta->bindParam(':ip', $ip);
-            $consulta->bindParam(':tabela_id', $tabela_id);
-            $consulta->bindParam(':tabela', $tabela);
-            $consulta->bindParam(':acao', $acao);
-
-            if ( !$consulta->execute() )
-                echo $consulta->errorInfo()[2];
-
-        }
-
-        /*echo "<p>{$pasta} {$arquivo}</p>"; 
-        
-        echo $_SERVER['REMOTE_ADDR'];
-
-        echo "<pre>";
-        print_r ( $_SERVER );*/
-
-        
-        //verificar o acesso aquele arquivo
-
-        //pegar o tipo de usuário
-        $tipo_id = $_SESSION["submarino"]["tipo_id"];
-
-        $sql = "select acesso from acesso where tabela = :arquivo AND 
-            tipo_id = :tipo_id limit 1";
-        $consulta = $pdo->prepare($sql);
-        $consulta->bindParam(":arquivo", $arquivo);
-        $consulta->bindParam(":tipo_id", $tipo_id);
-        $consulta->execute();
-        $dados = $consulta->fetch(PDO::FETCH_OBJ);
-
-        $acesso = $dados->acesso ?? "N";
-
-        //echo $acesso;
-
-        //verificar se o arquivo existe
-        if ( $acesso == "N") include "paginas/acesso.php";
-        else if ( file_exists( $pagina ) ) include $pagina;
+       
+        if ( file_exists( $pagina ) ) include $pagina;
         else include "paginas/erro.php";
 
         //incluir o footer

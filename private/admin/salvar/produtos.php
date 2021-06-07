@@ -1,5 +1,5 @@
 <?php
-    if ( ! isset ( $_SESSION['submarino']['id'] ) ) exit;
+    if ( ! isset ( $_SESSION['admin']['id'] ) ) exit;
 
     if ( $_POST ) {
 
@@ -72,7 +72,7 @@
             $t = 8 * 1024 * 1024; //byte - kbyte - megabyte
 
             $imagem = time();
-            $usuario = $_SESSION['submarino']['id'];
+            $usuario = $_SESSION['admin']['id'];
 
             //definir um nome para a imagem
             $imagem = "produto_{$imagem}_{$usuario}";

@@ -1,5 +1,5 @@
 <?php
-    if ( ! isset ( $_SESSION['submarino']['id'] ) ) exit;
+    if ( ! isset ( $_SESSION['admin']['id'] ) ) exit;
 
     $tabela = "usuarios";
 
@@ -63,7 +63,7 @@
                     <label for="tipo_id">Tipo:</label>
 
                     <?php 
-                    if ( $_SESSION["submarino"]["tipo_id"] == 1 ) {
+                    if ( $_SESSION["admin"]["tipo_id"] == 1 ) {
                     ?>
 
                     <select name="tipo_id" id="tipo_id" required data-parsley-required-message="Selecione um tipo" class="form-control">

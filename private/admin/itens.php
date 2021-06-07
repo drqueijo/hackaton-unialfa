@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	if ( ! isset ( $_SESSION['submarino']['id'] ) ) exit;
+	if ( ! isset ( $_SESSION['admin']['id'] ) ) exit;
 ?>
 <!DOCTYPE html>
 <html>
