@@ -1,12 +1,12 @@
 <?php
     if ( ! isset ( $_SESSION['admin']['id'] ) ) exit;
 
-    $cor = NULL;
+    $marca = NULL;
 
     if ( ! empty ( $id ) ) {
 
         //sql para recuperar os dados daquele id
-        $sql = "select * from cor where id = :id limit 1";
+        $sql = "select * from marca where id = :id limit 1";
         //pdo - preparar
         $consulta = $pdo->prepare($sql);
         //passar um parametro - id
@@ -18,7 +18,7 @@
 
         //recuperar os dados
         $id = $dados->id;
-        $cor = $dados->cor;
+        $marca = $dados->marca;
 
     }
 
@@ -26,24 +26,24 @@
 
 <div class="card">
     <div class="card-header">
-        <h3 class="float-left">Cadastro de Cores</h3>
+        <h3 class="float-left">Cadastro de marcas</h3>
 
         <div class="float-right">
-        	<a href="listar/cores" class="btn btn-info">
+        	<a href="listar/marca" class="btn btn-info">
         		<i class="fas fa-search"></i> Listar
         	</a>
         </div>
     </div>
     <div class="card-body">
-        <form name="formCadastro" method="post" action="salvar/cores" data-parsley-validate="">
+        <form name="formCadastro" method="post" action="salvar/marcas" data-parsley-validate="">
         	<div class="row">
         		<div class="col-12 col-md-2">
         			<label for="id">ID:</label>
         			<input type="text" name="id" id="id" class="form-control" readonly value="<?=$id?>">
         		</div>
         		<div class="col-12 col-md-10">
-        			<label for="tipo">Nome da cor</label>
-        			<input type="text" name="cor" id="cor" class="form-control" required data-parsley-required-message="Preencha o tipo">
+        			<label for="tipo">Nome da marca</label>
+        			<input type="text" name="marca" id="marca" class="form-control" required data-parsley-required-message="Preencha o tipo">
         		</div>
         	</div>
 
