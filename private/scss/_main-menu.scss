@@ -3,12 +3,17 @@
     align-items: center;
     position: fixed;
     bottom: 0;
-    height: 5rem;
+    height: 4rem;
     width: 100%;
     justify-content: flex-end;
     background: rgb(111,51,51);
     background: linear-gradient(174deg, rgba(111,51,51,1) 0%, rgba(79,63,63,1) 93%);
     z-index: 1000;
+    transition: height 0.5s;
+
+    &:hover {
+        height: 5rem;
+    }
     
     &__item {
         padding: 1rem;
@@ -24,15 +29,13 @@
         }
 
         &--link {
-            color: #ffffffb1;
+            color: #ffffff91;
             font-size: 1rem;
             font-weight:bold;
-            transition: 200ms color ease-in;
+            transition: 0.5s color ease-in;
         }
         &--link:hover {
             color: #ffffff;
-            transition: transform 0.2 ease-in-out;
-            transform: scale(1.2);
             text-decoration: none;
         }
 

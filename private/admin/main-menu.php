@@ -18,14 +18,16 @@
                     <div class="main-menu__item left">
                         <img class="main-menu__item--img" src="<?="../arquivos/".$_SESSION['admin']['foto']."p.jpg"?>">
                     </div>
+
+                    <!--Refatorar para Veiculos-->
                     <div class="main-menu__item">
-                        <a class="main-menu__item--link" href="./">
-                           Dashboard
+                        <a class="main-menu__item--link" href="./listar/produtos">
+                            Veiculos
                         </a>
                     </div>
                     <div class="main-menu__item">
-                        <a class="main-menu__item--link" href="./listar/produtos">
-                            Carros
+                        <a class="main-menu__item--link" href="./listar/marcas">
+                            Marcas
                         </a>
                     </div>
                     <div class="main-menu__item">
@@ -38,6 +40,13 @@
                             Cores
                         </a>
                     </div>
+                    <!--Deixar apenas ICONE-->
+                    <div class="main-menu__item">
+                        <a class="main-menu__item--link" href="./">
+                           Dashboard
+                        </a>
+                    </div>
+                    <!--Deixar apenas ICONE-->
                     <div class="main-menu__item">
                         <a class="main-menu__item--link"href="sair.php">
                             Logout
