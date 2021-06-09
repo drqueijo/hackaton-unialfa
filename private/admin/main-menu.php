@@ -18,10 +18,8 @@
                     <div class="main-menu__item left">
                         <img class="main-menu__item--img" src="<?="../arquivos/".$_SESSION['admin']['foto']."p.jpg"?>">
                     </div>
-
-                    <!--Refatorar para Veiculos-->
                     <div class="main-menu__item">
-                        <a class="main-menu__item--link" href="./listar/produtos">
+                        <a class="main-menu__item--link" href="./listar/veiculos">
                             Veiculos
                         </a>
                     </div>

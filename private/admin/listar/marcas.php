@@ -1,5 +1,5 @@
 <div class="float-right">
-        	<a href="cadastros/cores" class="btn btn-info">
+        	<a href="cadastros/marcas" class="btn btn-info">
         		<i class="fas fa-file"></i> Novo
         	</a>
         </div>

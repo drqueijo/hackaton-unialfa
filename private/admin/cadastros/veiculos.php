@@ -1,14 +1,16 @@
 <?php
     if ( ! isset ( $_SESSION['admin']['id'] ) ) exit;
 
-    $produto = $descricao = $valor = $promo = $imagem = $ativo = $categoria_id = NULL;
+    $modelo = $anomodelo = $anofabricacao = $valor = $tipo = $fotoDestaque  = $usuario_id = $cor_id = $marca_id = NULL;
+
+	$usuario_id = ($_SESSION['admin']['id']);
 
 
     //select para edição
     if ( ! empty ( $id ) ) {
 
         //sql para recuperar os dados daquele id
-        $sql = "select * from produto where id = :id limit 1";
+        $sql = "select * from veiculo where id = :id limit 1";
         //pdo - preparar
         $consulta = $pdo->prepare($sql);
         //passar um parametro - id
@@ -19,31 +21,34 @@
         $dados = $consulta->fetch(PDO::FETCH_OBJ);
 
         //recuperar os dados
-        $produto = $dados->produto;
-        $descricao = $dados->descricao;
+        $modelo = $dados->modelo;
+        $anomodelo = $dados->anomodelo;
+        $anofabricacao = $dados->anofabricacao;
         $valor = formatarValorBR($dados->valor);
-        $promo = formatarValorBR($dados->promo);
-        $imagem = $dados->imagem;
-        $ativo = $dados->ativo;
-        $categoria_id =$dados->categoria_id;
+		$tipo = $dados->tipo;
+        $fotoDestaque = $dados->fotoDestaque;
+        
+		$usuario_id =$dados->usuario_id;
+        $cor_id =$dados->cor_id;
+        $marca_id =$dados->marca_id;
 
     }
 
 ?>
 <div class="card">
 	<div class="card-header">
-		<h3 class="float-left">Cadastro de Produtos</h3>
+		<h3 class="float-left">Cadastro de veiculos</h3>
 		<div class="float-right">
-			<a href="cadastros/produtos" class="btn btn-info">
+			<a href="cadastros/veiculos" class="btn btn-info">
         		<i class="fas fa-file"></i> Novo
         	</a>
-        	<a href="listar/produtos" class="btn btn-info">
+        	<a href="listar/veiculos" class="btn btn-info">
         		<i class="fas fa-search"></i> Listar
         	</a>
 		</div>
 	</div>
 	<div class="card-body">
-		<form name="formCadastro" method="post" action="salvar/produtos" data-parsley-validate="" enctype="multipart/form-data">
+		<form name="formCadastro" method="post" action="salvar/veiculos" data-parsley-validate="" enctype="multipart/form-data">
 			
 			<div class="row">
 				<div class="col-12 col-md-2">
@@ -53,35 +58,36 @@
 					value="<?=$id?>">
 				</div>
 				<div class="col-12 col-md-10">
-					<label for="produto">Nome do Produto*:</label>
-					<input type="text" name="produto"
-					id="produto" class="form-control" required data-parsley-required-message="Digite o nome do produto"
-					value="<?=$produto?>"  maxlength="200">
+					<label for="modelo">Nome do modelo*:</label>
+					<input type="text" name="modelo"
+					id="modelo" class="form-control" required data-parsley-required-message="Digite o nome do modelo"
+					value="<?=$modelo?>"  maxlength="200">
 				</div>
-				<div class="col-12 col-md-12">
-					<label for="descricao">Descrição do Produto*:</label>
-					<textarea name="descricao" id="descricao" class="form-control" required data-parsley-required-message="Digite a descrição do produto" rows="10"><?=$descricao?></textarea>
-				</div>
-				<div class="col-12 col-md-4">
-					<label for="valor">Valor do Produto*:</label>
+				<div class="col-6 col-md-4">
+					<label for="valor">Valor do veiculo*:</label>
 					<input type="text" name="valor" id="valor" class="form-control valor" required 
-					data-parsley-required-message="Digite o valor do produto" inputmode="numeric" value="<?=$valor?>">
+					data-parsley-required-message="Digite o valor do veiculo" inputmode="numeric" value="<?=$valor?>">
 				</div>
-				<div class="col-12 col-md-4">
-					<label for="promo">Valor Promocional:</label>
-					<input type="text" name="promo" id="promo" class="form-control valor" 
-					inputmode="numeric" value="<?=$promo?>">
+				<div class="col-6 col-md-4">
+					<label for="anomodelo">Ano do modelo*:</label>
+					<input type="text" name="anomodelo" id="anomodelo" class="form-control" required 
+					data-parsley-required-message="Digite o ano do modelo" inputmode="numeric" value="<?=$anomodelo?>">
 				</div>
-				<div class="col-12 col-md-4">
+				<div class="col-6 col-md-4">
+					<label for="anofabricacao">Ano de fabricação*:</label>
+					<input type="text" name="anofabricacao" id="anofabricacao" class="form-control" required 
+					data-parsley-required-message="Digite o ano de fabricação" inputmode="numeric" value="<?=$anofabricacao?>">
+				</div>
+				<div class="col-6 col-md-4">
 					<?php
 
 						$required = ' required data-parsley-required-message="Selecione um arquivo" ';
 						$link = NULL;
 
 						//verificar se a imagem não esta em branco
-						if ( !empty ( $imagem ) ) {
+						if ( !empty ( $fotoDestaque ) ) {
 							//caminho para a imagem
-							$img = "../produtos/{$imagem}m.jpg";
+							$img = "../veiculos/{$fotoDestaque}m.jpg";
 							//criar um link para abrir a imagem
 							$link = "<a href='{$img}' data-lightbox='foto' class='badge badge-success'>Abrir imagem</a>";
 							$required = NULL;
@@ -89,36 +95,53 @@
 						}
 
 					?>
-					<label for="imagem">Imagem (JPG)* <?=$link?>:</label>
-					<input type="file" name="imagem" 
-					id="imagem" class="form-control"
+					<label for="fotoDestaque">Foto destaque (JPG)* <?=$link?>:</label>
+					<input type="file" name="fotoDestaque" 
+					id="fotoDestaque" class="form-control"
 					<?=$required?> accept="image/jpeg">
 				</div>
-				<div class="col-12 col-md-8">
-					<label for="categoria_id">Selecione uma Categoria*:</label>
-					<select name="categoria_id" id="categoria_id" class="form-control" required data-parsley-required-message="Selecione uma categoria">
+				<div class="col-6 col-md-6">
+					<label for="marca_id">Selecione uma Marca*:</label>
+					<select name="marca_id" id="marca_id" class="form-control" required data-parsley-required-message="Selecione uma marca">
 						<option value=""></option>
 						<?php
-						//selecionar todas as categoria
-						$sql = "select id, categoria from categoria order by categoria";
+						//selecionar todas as marcas
+						$sql = "select id, marca from marca order by marca";
 						$consulta = $pdo->prepare($sql);
 						$consulta->execute();
 
 						while ( $dados = $consulta->fetch(PDO::FETCH_OBJ) ) {
 
-							echo "<option value='{$dados->id}'>{$dados->categoria}</option>";
+							echo "<option value='{$dados->id}'>{$dados->marca}</option>";
 
 						}
-
 						?>
 					</select>
 				</div>
-				<div class="col-12 col-md-4">
-					<label for="ativo">Ativo:</label>
-					<select name="ativo" id="ativo" class="form-control" required data-parsley-required-message="Selecione uma opção">
+				<div class="col-6 col-md-6">
+					<label for="cor_id">Selecione uma cor*:</label>
+					<select name="cor_id" id="cor_id" class="form-control" required data-parsley-required-message="Selecione uma cor">
+						<option value=""></option>
+						<?php
+						//selecionar todas as marcas
+						$sql = "select id, cor from cor order by cor";
+						$consulta = $pdo->prepare($sql);
+						$consulta->execute();
+
+						while ( $dados = $consulta->fetch(PDO::FETCH_OBJ) ) {
+
+							echo "<option value='{$dados->id}'>{$dados->cor}</option>";
+
+						}
+						?>
+					</select>
+				</div>
+				<div class="col-6 col-md-4">
+					<label for="tipo">Tipo:</label>
+					<select name="tipo" id="tipo" class="form-control" required data-parsley-required-message="Selecione uma opção">
 						<option value="">Selecione</option>
-						<option value="S">Sim</option>
-						<option value="N">Não</option>
+						<option value="n">Novo</option>
+						<option value="s">Semi-novo</option>
 					</select>
 				</div>
 			</div>
@@ -136,28 +159,15 @@
 </div>
 <script>
 	$(document).ready(function(){
-		$("#descricao").summernote({
-			height: '200px',
-			lang: 'pt-BR',
-			toolbar: [
-	          ['style', ['style']],
-	          ['font', ['bold', 'underline', 'clear']],
-	          ['color', ['color']],
-	          ['para', ['ul', 'ol', 'paragraph']],
-	          ['table', ['table']],
-	          ['insert', ['link', 'picture', 'video']],
-	          ['view', ['codeview']]
-	        ]
-		});
-
 		$(".valor").maskMoney({
 			thousands: '.',
 			decimal: ','
 		});
 
 		//selecionar a categoria
-		$("#categoria_id").val(<?=$categoria_id?>);
-		$("#ativo").val("<?=$ativo?>");
+		$("#cor_id").val(<?=$cor_id?>);
+		$("#marca_id").val(<?=$marca_id?>);
+		$("#tipo").val("<?=$tipo?>");
 	})
 </script>
 
