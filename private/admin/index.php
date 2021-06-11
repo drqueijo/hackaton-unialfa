@@ -109,9 +109,6 @@
        
         if ( file_exists( $pagina ) ) include $pagina;
         else include "paginas/erro.php";
-
-        //incluir o footer
-        include "footer.php";
     }
 
     ?>

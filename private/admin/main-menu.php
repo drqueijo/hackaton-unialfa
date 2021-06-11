@@ -38,12 +38,7 @@
                             Cores
                         </a>
                     </div>
-                    <!--Deixar apenas ICONE-->
-                    <div class="main-menu__item">
-                        <a class="main-menu__item--link" href="./">
-                           Dashboard
-                        </a>
-                    </div>
+
                     <!--Deixar apenas ICONE-->
                     <div class="main-menu__item">
                         <a class="main-menu__item--link"href="sair.php">

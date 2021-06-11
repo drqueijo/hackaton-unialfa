@@ -35,22 +35,21 @@
     }
 
 ?>
-<div class="card">
-	<div class="card-header">
-		<h3 class="float-left">Cadastro de veiculos</h3>
-		<div class="float-right">
-			<a href="cadastros/veiculos" class="btn btn-info">
+<div class="cadastro-veiculos">
+	<div class="cadastro-veiculos__header">
+		<div class="cadastro-veiculos__header--control">
+			<a href="cadastros/veiculos" class="cadastro-veiculos__header--button">
         		<i class="fas fa-file"></i> Novo
         	</a>
-        	<a href="listar/veiculos" class="btn btn-info">
+        	<a href="listar/veiculos" class="cadastro-veiculos__header--button">
         		<i class="fas fa-search"></i> Listar
         	</a>
 		</div>
+		<h3 class="cadastro-veiculos__header--title">Cadastro de veiculos</h3>
 	</div>
-	<div class="card-body">
-		<form name="formCadastro" method="post" action="salvar/veiculos" data-parsley-validate="" enctype="multipart/form-data">
-			
-			<div class="row">
+	<div class="cadastro-veiculos__container">
+		<form name="formCadastro" method="post" action="salvar/veiculos" data-parsley-validate="" enctype="multipart/form-data">			
+			<div class="cadastro-veiculos__container__form">
 				<div class="col-12 col-md-2">
 					<label for="id">ID:</label>
 					<input type="text" name="id" id="id"
@@ -63,25 +62,25 @@
 					id="modelo" class="form-control" required data-parsley-required-message="Digite o nome do modelo"
 					value="<?=$modelo?>"  maxlength="200">
 				</div>
-				<div class="col-6 col-md-4">
+				<div class="col-12 col-md-4">
 					<label for="valor">Valor do veiculo*:</label>
 					<input type="text" name="valor" id="valor" class="form-control valor" required 
 					data-parsley-required-message="Digite o valor do veiculo" inputmode="numeric" value="<?=$valor?>">
 				</div>
-				<div class="col-6 col-md-4">
+				<div class="col-12 col-md-4">
 					<label for="anomodelo">Ano do modelo*:</label>
 					<input type="text" name="anomodelo" id="anomodelo" class="form-control" required 
 					data-parsley-required-message="Digite o ano do modelo" inputmode="numeric" value="<?=$anomodelo?>">
 				</div>
-				<div class="col-6 col-md-4">
+				<div class="col-12 col-md-4">
 					<label for="anofabricacao">Ano de fabricação*:</label>
 					<input type="text" name="anofabricacao" id="anofabricacao" class="form-control" required 
 					data-parsley-required-message="Digite o ano de fabricação" inputmode="numeric" value="<?=$anofabricacao?>">
 				</div>
-				<div class="col-6 col-md-4">
+				<div class="col-12 col-md-4">
 					<?php
 
-						$required = ' required data-parsley-required-message="Selecione um arquivo" ';
+						$required = ' required data-parsley-required-message=" " ';
 						$link = NULL;
 
 						//verificar se a imagem não esta em branco
@@ -100,7 +99,7 @@
 					id="fotoDestaque" class="form-control"
 					<?=$required?> accept="image/jpeg">
 				</div>
-				<div class="col-6 col-md-6">
+				<div class="col-12 col-md-6">
 					<label for="marca_id">Selecione uma Marca*:</label>
 					<select name="marca_id" id="marca_id" class="form-control" required data-parsley-required-message="Selecione uma marca">
 						<option value=""></option>
@@ -118,7 +117,7 @@
 						?>
 					</select>
 				</div>
-				<div class="col-6 col-md-6">
+				<div class="col-12 col-md-6">
 					<label for="cor_id">Selecione uma cor*:</label>
 					<select name="cor_id" id="cor_id" class="form-control" required data-parsley-required-message="Selecione uma cor">
 						<option value=""></option>
@@ -136,7 +135,7 @@
 						?>
 					</select>
 				</div>
-				<div class="col-6 col-md-4">
+				<div class="col-12 col-md-4">
 					<label for="tipo">Tipo:</label>
 					<select name="tipo" id="tipo" class="form-control" required data-parsley-required-message="Selecione uma opção">
 						<option value="">Selecione</option>
@@ -146,7 +145,7 @@
 				</div>
 			</div>
 
-			<button type="submit" class="btn btn-success float-right">
+			<button type="submit" class="cadastro-veiculos__container__form--button float-right">
 				<i class="fas fa-check"></i> Salvar / Alterar
 			</button>
 
