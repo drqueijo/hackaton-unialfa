@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07-Jun-2021 às 18:25
+-- Tempo de geração: 11-Jun-2021 às 01:59
 -- Versão do servidor: 10.4.19-MariaDB
 -- versão do PHP: 8.0.6
 
@@ -39,7 +39,8 @@ CREATE TABLE `cor` (
 INSERT INTO `cor` (`id`, `cor`) VALUES
 (2, 'branco'),
 (3, 'roxo'),
-(4, 'marrom');
+(4, 'marrom'),
+(5, 'GM');
 
 -- --------------------------------------------------------
 
@@ -51,6 +52,14 @@ CREATE TABLE `marca` (
   `id` int(11) NOT NULL,
   `marca` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `marca`
+--
+
+INSERT INTO `marca` (`id`, `marca`) VALUES
+(2, 'bmw'),
+(3, 'abcd');
 
 -- --------------------------------------------------------
 
@@ -75,7 +84,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `nome`, `email`, `login`, `senha`, `foto`, `tipo_id`, `ativo`) VALUES
 (1, 'Steve Jobisson', 'steve@jobisson.com', 'steve', '$2y$10$8sk6AfAW3b98X6GcdATA2OEtS/M2odQyQpbXXIp.WH.oKb.bjZ/cq', 'jobs', 1, 'S'),
-(3, 'Hysteven Ispilberg', 'spil@berg.com.br', 'hysteven', 'spilberg', '', 1, 'N');
+(3, 'Hysteven Ispilberg', 'spil@berg.com.br', 'hysteven', 'spilberg', '', 1, 'N'),
+(4, 'asd', '123@gmail.com', 'asd', '$2y$10$9Vn68L5SUpR/6n6nl8NLtuQ7idW.f0V1bVjVXPywz3cCd1MgDU.r.', '1623268845_1', 2, 'S');
 
 -- --------------------------------------------------------
 
@@ -91,11 +101,22 @@ CREATE TABLE `veiculo` (
   `valor` double DEFAULT NULL,
   `tipo` char(1) DEFAULT NULL,
   `fotoDestaque` varchar(45) DEFAULT NULL,
-  `veiculocol` varchar(45) DEFAULT NULL,
   `usuario_id` int(11) DEFAULT NULL,
-  `marca_id` int(11) DEFAULT NULL,
-  `cor_id` int(11) DEFAULT NULL
+  `cor_id` int(11) DEFAULT NULL,
+  `marca_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `veiculo`
+--
+
+INSERT INTO `veiculo` (`id`, `modelo`, `anomodelo`, `anofabricacao`, `valor`, `tipo`, `fotoDestaque`, `usuario_id`, `cor_id`, `marca_id`) VALUES
+(1, 'Astra2', '2010', '2009', 200.02, 's', '1609540750_1', 1, 2, 2),
+(2, 'Vectra', '2000', '2001', 200.45, 'n', '1609540750_1', 1, 3, 2),
+(3, 'Uno', '1991', '1990', 2222, 'n', '1609540750_1', 3, 4, 3),
+(5, 'jipe', '2010', '2010', 200, 'n', NULL, 1, 5, 3),
+(6, 'jipe2', '2010', '2010', 5000, 's', NULL, 1, 5, 3),
+(7, 'rx-7', '2010', '2010', 5000, 's', 'veiculo_1623205899_1', 1, 3, 3);
 
 --
 -- Índices para tabelas despejadas
@@ -127,7 +148,6 @@ ALTER TABLE `usuario`
 ALTER TABLE `veiculo`
   ADD PRIMARY KEY (`id`),
   ADD KEY `usuario_veiculo` (`usuario_id`),
-  ADD KEY `marca_veiculo` (`marca_id`),
   ADD KEY `cor_veiculo` (`cor_id`);
 
 --
@@ -138,19 +158,25 @@ ALTER TABLE `veiculo`
 -- AUTO_INCREMENT de tabela `cor`
 --
 ALTER TABLE `cor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `marca`
+--
+ALTER TABLE `marca`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `veiculo`
 --
 ALTER TABLE `veiculo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restrições para despejos de tabelas
@@ -167,7 +193,6 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `veiculo`
   ADD CONSTRAINT `cor_veiculo` FOREIGN KEY (`cor_id`) REFERENCES `cor` (`id`),
-  ADD CONSTRAINT `marca_veiculo` FOREIGN KEY (`marca_id`) REFERENCES `marca` (`id`),
   ADD CONSTRAINT `usuario_veiculo` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`);
 COMMIT;
 
