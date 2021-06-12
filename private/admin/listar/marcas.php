@@ -1,17 +1,24 @@
-<div class="float-right">
-        	<a href="cadastros/marcas" class="btn btn-info">
+<div class="listagem-marcas">
+    <div class="listagem-marcas__header">
+        <div class="listagem-marcas__header--control">
+        	<a href="cadastros/marcas" class="listagem-marcas__header--button">
         		<i class="fas fa-file"></i> Novo
         	</a>
+        	<a href="listar/marcas" class="listagem-marcas__header--button">
+        		<i class="fas fa-search"></i> Listar
+        	</a>
         </div>
-        <table class="table table-bordered table-striped table-hover">
-            <thead>
+    </div>
+    <div class="listagem-marcas__container">
+        <table class="listagem-marcas__container--table">
+            <thead class="listagem-marcas__container--table-h">
                 <tr>
-                    <td width="20%">ID</td>
-                    <td width="50%">Marca</td>
-                    <td width="30%">action</td>
+                    <td width="33%">ID</td>
+                    <td width="33%">Marca</td>
+                    <td width="33%">action</td>
                 </tr>      
             </thead>
-            <tbody>
+            <tbody  class="listagem-marcas__container--table-b">
                 <?php
                     //selecionat todas as categorias
                     $sql = "select * from marca order by id";
@@ -25,13 +32,13 @@
                         ?>
                         <tr>
                             <td><?=$dados->id?></td>
-                            <td><?=$dados->marca?></td>
+                            <td class="listagem-marcas__container--table--destaque"><?=$dados->marca?></td>
                             <td>
-                                <a href="cadastros/marcas/<?=$dados->id?>" class="btn btn-success btn-sm">
+                                <a href="cadastros/marcas/<?=$dados->id?>" class="listagem-marcas__container--table--button">
                                     <i class="fas fa-edit"></i>
                                 </a>
 
-                                <a href="javascript:excluir(<?=$dados->id?>)" class="btn btn-danger btn-sm">
+                                <a href="javascript:excluir(<?=$dados->id?>)" class="listagem-marcas__container--table--button">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>
@@ -44,7 +51,8 @@
                 
             </tbody>
         </table>
-
+    </div>       
+</div>
 <script type="text/javascript">
     function excluir(id) {
 
@@ -62,4 +70,3 @@
         })
     }
 </script>
-<script src="js/dataTable.js"></script>

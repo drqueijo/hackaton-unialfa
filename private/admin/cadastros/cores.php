@@ -24,19 +24,21 @@
 
 ?>
 
-<div class="card">
-    <div class="card-header">
-        <h3 class="float-left">Cadastro de Cores</h3>
-
-        <div class="float-right">
-        	<a href="listar/cores" class="btn btn-info">
+<div class="cadastro-cores">
+	<div class="cadastro-cores__header">
+		<div class="cadastro-cores__header--control">
+			<a href="cadastros/cores" class="cadastro-cores__header--button">
+        		<i class="fas fa-file"></i> Novo
+        	</a>
+        	<a href="listar/cores" class="cadastro-cores__header--button">
         		<i class="fas fa-search"></i> Listar
         	</a>
-        </div>
-    </div>
-    <div class="card-body">
+		</div>
+		<h3 class="cadastro-cores__header--title">Cadastro de cores</h3>
+	</div>
+    <div class="cadastro-cores__container">
         <form name="formCadastro" method="post" action="salvar/cores" data-parsley-validate="">
-        	<div class="row">
+            <div class="cadastro-usuarios__container__form">
         		<div class="col-12 col-md-2">
         			<label for="id">ID:</label>
         			<input type="text" name="id" id="id" class="form-control" readonly value="<?=$id?>">
@@ -47,7 +49,7 @@
         		</div>
         	</div>
 
-        	<button type="submit" class="btn btn-success float-right">
+        	<button type="submit" class="cadastro-usuarios__container__form--button float-right">
         		<i class="fas fa-check"></i> Salvar / Alterar
         	</button>
         </form>

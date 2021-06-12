@@ -66,7 +66,6 @@
                 "error");
             }
             
-            echo $_FILES['fotoDestaque']['name'], $fotoDestaque;
             //redimensionar a imagem
             $pastaFotos = '../veiculos/';
             loadImg($pastaFotos.$_FILES['fotoDestaque']['name'], 

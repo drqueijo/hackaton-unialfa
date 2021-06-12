@@ -24,19 +24,21 @@
 
 ?>
 
-<div class="card">
-    <div class="card-header">
-        <h3 class="float-left">Cadastro de marcas</h3>
-
-        <div class="float-right">
-        	<a href="listar/marca" class="btn btn-info">
+<div class="cadastro-marcas">
+	<div class="cadastro-marcas__header">
+		<div class="cadastro-marcas__header--control">
+			<a href="cadastros/marcas" class="cadastro-marcas__header--button">
+        		<i class="fas fa-file"></i> Novo
+        	</a>
+        	<a href="listar/marcas" class="cadastro-marcas__header--button">
         		<i class="fas fa-search"></i> Listar
         	</a>
-        </div>
-    </div>
-    <div class="card-body">
+		</div>
+		<h3 class="cadastro-marcas__header--title">Cadastro de marcas</h3>
+	</div>
+    <div class="cadastro-marcas__container">
         <form name="formCadastro" method="post" action="salvar/marcas" data-parsley-validate="">
-        	<div class="row">
+        	<div class="cadastro-marcas__container__form">
         		<div class="col-12 col-md-2">
         			<label for="id">ID:</label>
         			<input type="text" name="id" id="id" class="form-control" readonly value="<?=$id?>">
@@ -47,7 +49,7 @@
         		</div>
         	</div>
 
-        	<button type="submit" class="btn btn-success float-right">
+        	<button type="submit" class="cadastro-marcas__container__form--button float-right">
         		<i class="fas fa-check"></i> Salvar / Alterar
         	</button>
         </form>

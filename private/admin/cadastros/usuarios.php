@@ -35,22 +35,21 @@
 
     }
 ?>
-<div class="card">
-    <div class="card-header">
-        <h3 class="float-left">Cadastro de Usuários</h3>
-
-        <div class="float-right">
-        	<a href="cadastros/<?=$tabela?>" class="btn btn-info">
+<div class="cadastro-usuarios">
+	<div class="cadastro-usuarios__header">
+		<div class="cadastro-usuarios__header--control">
+			<a href="cadastros/usuarios" class="cadastro-usuarios__header--button">
         		<i class="fas fa-file"></i> Novo
         	</a>
-        	<a href="listar/<?=$tabela?>" class="btn btn-info">
+        	<a href="listar/usuarios" class="cadastro-usuarios__header--button">
         		<i class="fas fa-search"></i> Listar
         	</a>
-        </div>
-    </div>
-    <div class="card-body">
+		</div>
+		<h3 class="cadastro-usuarios__header--title">Cadastro de usuarios</h3>
+	</div>
+    <div class="cadastro-usuarios__container">
         <form name="formCadastro" method="post" action="salvar/<?=$tabela?>" data-parsley-validate="" enctype="multipart/form-data">
-        	<div class="row">
+            <div class="cadastro-usuarios__container__form">
         		<div class="col-12 col-md-2">
         			<label for="id">ID:</label>
         			<input type="text" name="id" id="id" class="form-control" readonly value="<?=$id?>">
@@ -133,7 +132,7 @@
         		</div>
         	</div>
 
-        	<button type="submit" class="btn btn-success float-right">
+        	<button type="submit" class="cadastro-usuarios__container__form--button float-right">
         		<i class="fas fa-check"></i> Salvar / Alterar
         	</button>
         </form>

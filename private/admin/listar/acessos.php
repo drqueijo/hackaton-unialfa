@@ -89,4 +89,3 @@
         })
     }
 </script>
-<script src="js/dataTable.js"></script>

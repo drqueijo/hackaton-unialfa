@@ -42,7 +42,8 @@
                     <!--Deixar apenas ICONE-->
                     <div class="main-menu__item">
                         <a class="main-menu__item--link"href="sair.php">
-                            Logout
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sair
                         </a>
                     </div>
                 </div>
