@@ -87,7 +87,7 @@
 
         // conteudo da minha página
 
-        $pagina = "paginas/home.php";
+        $pagina = "./listar/veiculos.php";
 
         //verificar se o parametro existe em $_GET
         if ( isset ( $_GET['param'] ) ) {

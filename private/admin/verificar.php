@@ -49,8 +49,8 @@
 								"login"=>$dados->login, 
 								"foto"=>$dados->foto,
 								"tipo_id"=>$dados->tipo_id);
-		//redirecionar para uma tela home
-		header("Location: paginas/home");
+		//redirecionar para uma tela veiculos
+		header("Location: ./listar/veiculos");
 
 		exit;
 
