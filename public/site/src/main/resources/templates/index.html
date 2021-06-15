@@ -1,0 +1,118 @@
+<html>
+<!-- component  Header -->
+
+<head th:fragment="header">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <meta charset="utf-8">
+    <title>Concessionaria</title>
+</head>
+
+<!-- Component navbar -->
+
+<nav th:fragment="nav-bar" class="navbar navbar-expand-lg navbar-dark" id="nav">
+    <div>
+        <a class="navbar-brand" href="/">
+            <img src="assets/logo.png" alt="logo" height="80px">
+        </a>
+    </div>
+    <div class="colapse navbar-colapse">
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link h6" href="">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link h6" href="/main/n">Novos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link h6" href="/main/s">Seminovos</a>
+            </li>
+            <li class="nav-item dropdown "><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cor</a>
+                <ul class="dropdown-menu">
+                    <li th:each=" c : ${listCor}">
+                        <a th:href="@{/cv/(id=${c.id})}" class="dropdown-item">
+                            <p th:text="${c.cor}"></p>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="nav-item dropdown "><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Marca</a>
+                <ul class="dropdown-menu">
+                    <li th:each=" m : ${listMarca}">
+                        <a th:href="@{/mv/(id=${m.id})}" class="dropdown-item">
+                            <p th:text="${m.marca}"></p>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+<!-- Component Card de apresentação de veiculos -->
+<div class="container-veiculos">
+    <div th:fragment="card" class="card col-12 col-md-4 text container" id="card" th:each="v : ${listVeiculos}">
+        <div class="image-container">
+            <img th:attr="src=@{images/}+${v.fotodestaque}+m.jpg, alt=${v.modelo}, title=${v.modelo}">
+        </div>
+        <div class="card-body">
+            <h4 class="card-title" th:text="${v.modelo}"></h4>
+            <h3 class="card-text" th:text="${#numbers.formatCurrency(v.valor)}"></h3>
+            <p class="card-title" th:text="${v.marca.marca}"></p>
+            <div class="clearfix">
+                <p class="card-text float-start text-muted" th:text="${v.anofabricacao}"></p>
+                <p class="card-text float-end text-muted" th:text="${v.tipo}"></p>
+            </div>
+            <a th:href="@{/obj/(id=${v.id})}" class="btn btn-success btn-lg w-100">Detalhes</a>
+        </div>
+    </div>
+
+
+    <!-- Component Card de apresentação de veiculos por cor-->
+
+    <div th:fragment="cor" class="card col-12 col-md-4 text container" id="card" th:each="v : ${cv}">
+        <img class="card-img-top w-100" th:attr="src=@{/images/}+${v.fotodestaque}+m.jpg, alt=${v.modelo}, title=${v.modelo}">
+        <div class="card-body">
+
+            <h4 class="card-title" th:text="${v.modelo}"></h4>
+            <h3 class="card-text" th:text="${#numbers.formatCurrency(v.valor)}"></h3>
+            <p class="card-title" th:text="${v.marca.marca}"></p>
+            <div class="clearfix">
+                <p class="card-text float-start text-muted" th:text="${v.anofabricacao}"></p>
+                <p class="card-text float-end text-muted" th:text="${v.tipo}"></p>
+            </div>
+            <a th:href="@{/obj/(id=${v.id})}" class="card-text">Detalhes</a>
+        </div>
+    </div>
+
+
+    <!-- Component Card de apresentação de veiculos por Marca-->
+
+    <div th:fragment="marca" class="col-sm-6" id="card" th:each="v : ${mv}">
+        <img class="card-img-top w-100" th:attr="src=@{/images/}+${v.fotodestaque}+m.jpg, alt=${v.modelo}, title=${v.modelo}">
+        <div class="card-body">
+            <h4 class="card-title" th:text="${v.modelo}"></h4>
+            <h3 class="card-text" th:text="${#numbers.formatCurrency(v.valor)}"></h3>
+            <p class="card-title" th:text="${v.marca.marca}"></p>
+            <div class="clearfix">
+                <p class="card-text float-start text-muted" th:text="${v.anofabricacao}"></p>
+                <p class="card-text float-end text-muted" th:text="${v.tipo}"></p>
+            </div>
+            <a th:href="@{/obj/(id=${v.id})}" class="btn btn-success btn-lg w-100">Detalhes</a>
+        </div>
+    </div>
+</div>
+
+</html>
